@@ -10,6 +10,7 @@ add_subdirectory(lib/googletest-release-1.8.1)
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
 add_executable(MetroidvaniaTest
-        dynamicsTest.cpp)
+        dynamicsTest.cpp
+        geometryTest.cpp)
 
 target_link_libraries(MetroidvaniaTest gtest gtest_main)

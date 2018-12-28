@@ -27,7 +27,9 @@ include_directories(${SDL2_INCLUDE_DIR}
 set(SOURCE_FILES
         src/main.cpp
         src/intersect.cpp src/intersect.h
-        src/dynamics.cpp src/dynamics.h src/gameutil.cpp src/gameutil.h)
+        src/dynamics.cpp src/dynamics.h
+        src/gameutil.cpp src/gameutil.h
+        src/geometry.cpp src/geometry.h)
 
 add_executable(${CMAKE_PROJECT_NAME} ${SOURCE_FILES})
 
