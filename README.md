@@ -1,5 +1,3 @@
-# Metroidvania
-
 # Metroidvania Specification
 
 This document provides a *rough* specification for this term's recommended side project.
