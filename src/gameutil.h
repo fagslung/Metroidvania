@@ -11,15 +11,9 @@
 struct GameException : public std::exception {
 public:
     explicit GameException() = default;
-    explicit GameException(const std::string& message) : message{message} {};
+    explicit GameException(const std::string& message);
 
-    const char* what() const throw () {
-        if (message.empty()) {
-            return "Game error";
-        } else {
-            return message.c_str();
-        }
-    }
+    const char* what() const noexcept override;
 private:
     std::string message;
 };

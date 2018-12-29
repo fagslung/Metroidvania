@@ -13,4 +13,4 @@ add_executable(MetroidvaniaTest
         dynamicsTest.cpp
         geometryTest.cpp)
 
-target_link_libraries(MetroidvaniaTest gtest gtest_main)
+target_link_libraries(MetroidvaniaTest gtest gtest_main ${PROJECT_LIBRARY})

@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
+
 project(Metroidvania)
+set(PROJECT_LIBRARY ${CMAKE_PROJECT_NAME}Core)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -23,17 +25,18 @@ include_directories(${SDL2_INCLUDE_DIR}
         ${SDL2_TTF_INCLUDE_DIR}
         ${SDL2_MIXER_INCLUDE_DIR})
 
-
 set(SOURCE_FILES
-        src/main.cpp
         src/intersect.cpp src/intersect.h
         src/dynamics.cpp src/dynamics.h
         src/gameutil.cpp src/gameutil.h
         src/geometry.cpp src/geometry.h)
 
-add_executable(${CMAKE_PROJECT_NAME} ${SOURCE_FILES})
+add_library(${PROJECT_LIBRARY} ${SOURCE_FILES})
+
+add_executable(${CMAKE_PROJECT_NAME} src/main.cpp)
 
 target_link_libraries(${CMAKE_PROJECT_NAME}
+        ${PROJECT_LIBRARY}
         ${SDL2_LIBRARY}
         ${SDL2_IMAGE_LIBRARIES}
         ${SDL2_TTF_LIBRARIES}

@@ -16,7 +16,7 @@
  */
 class IEventSource {
 public:
-    virtual ~IEventSource() {}
+    virtual ~IEventSource() = default;
 
     virtual std::string toString() = 0;
 };
@@ -27,7 +27,7 @@ public:
  */
 class IEventListener {
 public:
-    virtual ~IEventListener() {}
+    virtual ~IEventListener() = default;
 };
 
 
@@ -36,16 +36,11 @@ public:
  */
 class Event {
 public:
-    Event(std::shared_ptr<IEventSource> source) : source(source) {}
+    explicit Event(std::shared_ptr<IEventSource>& source);
+    virtual ~Event() = default;
 
-    std::shared_ptr<IEventSource> getSource() {
-        return source;
-    }
-
-    virtual std::string toString() {
-        std::string classname = typeid(this).name();
-        return classname + ", source=" + source->toString();
-    }
+    std::shared_ptr<IEventSource> getSource();
+    virtual std::string toString();
 
 private:
     std::shared_ptr<IEventSource> source;
@@ -66,43 +61,19 @@ class ICollider;
  */
 class CollisionEvent : Event {
 public:
-    CollisionEvent(std::shared_ptr<IEventSource> source, std::shared_ptr<ICollider> obj1, std::shared_ptr<ICollider> obj2, const SDL_Point& vec1to2) : obj1(obj1), obj2(obj2), vec1to2(vec1to2), Event(source), vec2to1{-vec1to2.x, -vec1to2.y} {}
+    CollisionEvent(std::shared_ptr<IEventSource>& source, std::shared_ptr<ICollider>& obj1, std::shared_ptr<ICollider>& obj2, const SDL_Point& vec1to2);
+    ~CollisionEvent() override = default;
 
-    std::shared_ptr<ICollider> getCollider1() {
-        return obj1;
-    }
-
-    std::shared_ptr<ICollider> getCollider2() {
-        return obj2;
-    }
-
-    std::shared_ptr<ICollider> getOtherCollider(std::shared_ptr<ICollider> curCollider) {
-        if (curCollider == obj1) {
-            return obj2;
-        }
-
-        if (curCollider == obj2) {
-            return obj1;
-        }
-
-        throw GameException("wrong collider");
-    }
-
-    SDL_Point& getCollisionDirection(std::shared_ptr<ICollider> curCollider) {
-        if (curCollider == obj1) {
-            return vec2to1;
-        }
-
-        if (curCollider == obj2) {
-            return vec1to2;
-        }
-
-        throw GameException("wrong collider");
-    }
+    std::shared_ptr<ICollider> getCollider1();
+    std::shared_ptr<ICollider> getCollider2();
+    std::shared_ptr<ICollider> getOtherCollider(std::shared_ptr<ICollider> curCollider);
+    SDL_Point& getCollisionDirection(std::shared_ptr<ICollider> curCollider);
 
 private:
-    std::shared_ptr<ICollider> obj1, obj2;
-    SDL_Point vec1to2, vec2to1;
+    std::shared_ptr<ICollider> obj1;
+    std::shared_ptr<ICollider> obj2;
+    SDL_Point vec1to2;
+    SDL_Point vec2to1;
 };
 
 
@@ -111,7 +82,7 @@ private:
  */
 class ICollider : IEventListener {
 public:
-    virtual ~ICollider() {}
+    ~ICollider() override = default;
 
     virtual void prepareCollision(std::shared_ptr<CollisionEvent> ev) = 0;
     virtual void performCollision() = 0;
@@ -123,7 +94,8 @@ public:
  */
 class ICollisionListener : IEventListener {
 public:
-    virtual ~ICollisionListener() {}
+    ~ICollisionListener() override = default;
+
     virtual void collisionOccured(std::shared_ptr<CollisionEvent> ev) = 0;
 };
 
@@ -141,7 +113,8 @@ class Gamelet {
  */
 class GameEvent : Event {
 public:
-    GameEvent(std::shared_ptr<IEventSource> source) : Event(source) {}
+    explicit GameEvent(std::shared_ptr<IEventSource>& source);
+    ~GameEvent() override = default;
 };
 
 
@@ -150,7 +123,8 @@ public:
  */
 class IGameListener : IEventListener {
 public:
-    virtual ~IGameListener() {}
+    ~IGameListener() override = default;
+
     virtual void handleGameEvent(std::shared_ptr<GameEvent> ev) = 0;
 
 };
@@ -161,7 +135,8 @@ public:
  */
 class LevelDoneEvent : Event {
 public:
-    LevelDoneEvent(std::shared_ptr<IEventSource> source) : Event(source) {}
+    explicit LevelDoneEvent(std::shared_ptr<IEventSource>& source);
+    ~LevelDoneEvent() override = default;
 };
 
 
@@ -170,7 +145,8 @@ public:
  */
 class ILevelDoneListener : IEventListener {
 public:
-    virtual ~ILevelDoneListener() {}
+    ~ILevelDoneListener() override = default;
+
     virtual void handleLevelDoneEvent(std::shared_ptr<LevelDoneEvent> ev) = 0;
 
 };
@@ -181,12 +157,10 @@ public:
  */
 class LivesEvent : Event {
 public:
+    LivesEvent(std::shared_ptr<IEventSource>& source, int diff);
+    ~LivesEvent() override = default;
 
-    LivesEvent(std::shared_ptr<IEventSource> source, int diff) : Event(source), diff(diff) {}
-
-    int getDiff() {
-        return diff;
-    }
+    int getDiff();
 
 private:
     int diff;
@@ -198,7 +172,8 @@ private:
  */
 class ILivesListener : IEventListener {
 public:
-    virtual ~ILivesListener() {}
+    ~ILivesListener() override = default;
+
     virtual void handleLivesEvent(std::shared_ptr<LivesEvent> ev) = 0;
 
 };
@@ -209,11 +184,10 @@ public:
  */
 class PointsEvent : GameEvent {
 public:
-    PointsEvent(std::shared_ptr<IEventSource> source, int diff) : GameEvent(source), diff(diff) {}
+    PointsEvent(std::shared_ptr<IEventSource>& source, int diff);
+    ~PointsEvent() override = default;
 
-    int getDiff() {
-        return diff;
-    }
+    int getDiff();
 
 private:
     int diff;
@@ -225,7 +199,8 @@ private:
  */
 class IPointsListener : IEventListener {
 public:
-    virtual ~IPointsListener() {}
+    ~IPointsListener() override = default;
+
     virtual void handlePointsEvent(std::shared_ptr<PointsEvent> ev) = 0;
 
 };
@@ -235,26 +210,11 @@ public:
  */
 class DynamicFramework : IGameListener, ILevelDoneListener, ILivesListener, IPointsListener, IEventSource {
 public:
-    virtual std::string toString() override {
-        std::string classname = typeid(this).name();
-        return  classname;
-    };
-
-    virtual void handleGameEvent(std::shared_ptr<GameEvent> ev) override {
-        if (PointsEvent* pev = dynamic_cast<PointsEvent*>(ev.get())) {
-            std::cout << "Points event handled";
-        }
-    }
-
-    virtual void handleLevelDoneEvent(std::shared_ptr<LevelDoneEvent> ev) override {
-    }
-
-    virtual void handleLivesEvent(std::shared_ptr<LivesEvent> ev) override {
-    }
-
-    virtual void handlePointsEvent(std::shared_ptr<PointsEvent> ev) override {
-    }
-
+    std::string toString() override;
+    void handleGameEvent(std::shared_ptr<GameEvent> ev) override;
+    void handleLevelDoneEvent(std::shared_ptr<LevelDoneEvent> ev) override;
+    void handleLivesEvent(std::shared_ptr<LivesEvent> ev) override;
+    void handlePointsEvent(std::shared_ptr<PointsEvent> ev) override;
 
 };
 
