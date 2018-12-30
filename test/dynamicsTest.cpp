@@ -19,4 +19,22 @@ TEST(Dynamics, MoveEvent) {
     ASSERT_TRUE(me->getMoveDevider() == 10 && me->getType() == MoveEvent::BEGIN);
 }
 
+TEST(Dynamics, SimpleGameletIterator) {
+    Level l{};
+    std::vector<std::shared_ptr<Gamelet>> gamelets;
+    auto gameletIter = SimpleGameletIterator(l, gamelets);
+    ASSERT_TRUE(gameletIter.nextGamelet() == nullptr);
+
+    gamelets.push_back(std::make_shared<TestGamelet>());
+    gameletIter = SimpleGameletIterator(l, gamelets);
+    ASSERT_TRUE(gameletIter.nextGamelet()->getName() == "TestGamelet");
+    ASSERT_TRUE(gameletIter.nextGamelet() == nullptr);
+
+    gamelets.push_back(std::make_shared<TestGamelet>());
+    gameletIter = SimpleGameletIterator(l, gamelets);
+    ASSERT_TRUE(gameletIter.nextGamelet()->getName() == "TestGamelet");
+    ASSERT_TRUE(gameletIter.nextGamelet()->getName() == "TestGamelet");
+    ASSERT_TRUE(gameletIter.nextGamelet() == nullptr);
+}
+
 

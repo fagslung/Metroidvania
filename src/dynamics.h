@@ -9,6 +9,7 @@
 #include <string>
 #include <SDL.h>
 #include "gameutil.h"
+#include <vector>
 
 
 /**
@@ -59,7 +60,7 @@ class ICollider;
 /**
  *
  */
-class CollisionEvent : Event {
+class CollisionEvent : public Event {
 public:
     CollisionEvent(std::shared_ptr<IEventSource> source, std::shared_ptr<ICollider> obj1, std::shared_ptr<ICollider> obj2, const SDL_Point& vec1to2);
     ~CollisionEvent() override = default;
@@ -80,7 +81,7 @@ private:
 /**
  *
  */
-class ICollider : IEventListener {
+class ICollider : public IEventListener {
 public:
     ~ICollider() override = default;
 
@@ -92,7 +93,7 @@ public:
 /**
  *
  */
-class ICollisionListener : IEventListener {
+class ICollisionListener : public IEventListener {
 public:
     ~ICollisionListener() override = default;
 
@@ -103,15 +104,7 @@ public:
 /**
  *
  */
-class Gamelet {
-
-};
-
-
-/**
- *
- */
-class GameEvent : Event {
+class GameEvent : public Event {
 public:
     explicit GameEvent(std::shared_ptr<IEventSource> source);
     ~GameEvent() override = default;
@@ -121,7 +114,7 @@ public:
 /**
  *
  */
-class IGameListener : IEventListener {
+class IGameListener : public IEventListener {
 public:
     ~IGameListener() override = default;
 
@@ -133,7 +126,7 @@ public:
 /**
  *
  */
-class LevelDoneEvent : Event {
+class LevelDoneEvent : public Event {
 public:
     explicit LevelDoneEvent(std::shared_ptr<IEventSource> source);
     ~LevelDoneEvent() override = default;
@@ -143,7 +136,7 @@ public:
 /**
  *
  */
-class ILevelDoneListener : IEventListener {
+class ILevelDoneListener : public IEventListener {
 public:
     ~ILevelDoneListener() override = default;
 
@@ -155,7 +148,7 @@ public:
 /**
  *
  */
-class LivesEvent : Event {
+class LivesEvent : public Event {
 public:
     LivesEvent(std::shared_ptr<IEventSource> source, int diff);
     ~LivesEvent() override = default;
@@ -170,7 +163,7 @@ private:
 /**
  *
  */
-class ILivesListener : IEventListener {
+class ILivesListener : public IEventListener {
 public:
     ~ILivesListener() override = default;
 
@@ -182,7 +175,7 @@ public:
 /**
  *
  */
-class PointsEvent : GameEvent {
+class PointsEvent : public GameEvent {
 public:
     PointsEvent(std::shared_ptr<IEventSource> source, int diff);
     ~PointsEvent() override = default;
@@ -197,7 +190,7 @@ private:
 /**
  *
  */
-class IPointsListener : IEventListener {
+class IPointsListener : public IEventListener {
 public:
     ~IPointsListener() override = default;
 
@@ -238,5 +231,83 @@ private:
     int type;
     int moveDevider;
 };
+
+
+/**
+ *
+ */
+class IMoveListener : public IEventListener {
+public:
+    ~IMoveListener() override = default;
+
+    virtual void handleMoveEvent(std::shared_ptr<MoveEvent> ev) = 0;
+};
+
+
+/**
+ *
+ */
+class Level : public IGameListener, public ILevelDoneListener, public ILivesListener, public IPointsListener {
+public:
+    void handleGameEvent(std::shared_ptr<GameEvent> ev) override;
+    void handleLevelDoneEvent(std::shared_ptr<LevelDoneEvent> ev) override;
+    void handleLivesEvent(std::shared_ptr<LivesEvent> ev) override;
+    void handlePointsEvent(std::shared_ptr<PointsEvent> ev) override;
+};
+
+/**
+ *
+ */
+class Gamelet : public ICollider, IGameListener {
+public:
+    ~Gamelet() override = default;
+
+    virtual std::string getName() = 0;
+
+private:
+};
+
+/**
+ *
+ */
+class TestGamelet : public Gamelet {
+public:
+    TestGamelet() = default;
+
+    std::string getName() override;
+    void handleGameEvent(std::shared_ptr<GameEvent> ev) override;
+    void prepareCollision(std::shared_ptr<CollisionEvent> ev) override;
+    void performCollision() override;
+};
+
+/**
+ *  abstract
+ */
+class GameletIterator {
+public:
+    GameletIterator(const Level& level);
+    virtual ~GameletIterator() = default;
+
+    virtual std::shared_ptr<Gamelet> nextGamelet() = 0;
+
+protected:
+   Level level;
+};
+
+
+/**
+ *
+ */
+class SimpleGameletIterator : public GameletIterator {
+public:
+    SimpleGameletIterator(const Level& level, std::vector<std::shared_ptr<Gamelet>> gamelets /* copy required! */);
+
+    std::shared_ptr<Gamelet> nextGamelet() override;
+
+private:
+    std::vector<std::shared_ptr<Gamelet>> gamelets;
+    size_t index = 0;
+};
+
 
 #endif //METROIDVANIA_DYNAMICS_H

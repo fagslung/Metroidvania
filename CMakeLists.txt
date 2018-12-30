@@ -29,7 +29,9 @@ set(SOURCE_FILES
         src/intersect.cpp src/intersect.h
         src/dynamics.cpp src/dynamics.h
         src/gameutil.cpp src/gameutil.h
-        src/geometry.cpp src/geometry.h)
+        src/geometry.cpp src/geometry.h
+        src/base.cpp src/base.h
+        src/game.cpp src/game.h)
 
 add_library(${PROJECT_LIBRARY} ${SOURCE_FILES})
 

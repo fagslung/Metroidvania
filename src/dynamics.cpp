@@ -1,21 +1,11 @@
-#include <utility>
-
-#include <utility>
-
-#include <utility>
-
-#include <utility>
-
-#include <utility>
-
-#include <utility>
-
 //
 // Created by Martin Eberle on 24.12.2018.
 //
 
 #include "dynamics.h"
 #include <iostream>
+#include <utility>
+#include "base.h"
 
 
 std::shared_ptr<IEventSource> Event::getSource() {
@@ -113,4 +103,54 @@ int MoveEvent::getMoveDevider() {
 
 int MoveEvent::getType() {
     return type;
+}
+
+GameletIterator::GameletIterator(const Level &level) : level(level) {
+
+}
+
+void Level::handleGameEvent(std::shared_ptr<GameEvent> ev) {
+
+}
+
+void Level::handleLevelDoneEvent(std::shared_ptr<LevelDoneEvent> ev) {
+
+}
+
+void Level::handleLivesEvent(std::shared_ptr<LivesEvent> ev) {
+
+}
+
+void Level::handlePointsEvent(std::shared_ptr<PointsEvent> ev) {
+
+}
+
+SimpleGameletIterator::SimpleGameletIterator(const Level &level, std::vector<std::shared_ptr<Gamelet>> gamelets) :
+        GameletIterator(level), gamelets(std::move(gamelets)) {
+
+}
+
+std::shared_ptr<Gamelet> SimpleGameletIterator::nextGamelet() {
+    if (index < gamelets.size()) {
+
+        return gamelets[index++];
+    }
+
+    return nullptr;
+}
+
+std::string TestGamelet::getName() {
+    return "TestGamelet";
+}
+
+void TestGamelet::handleGameEvent(std::shared_ptr<GameEvent> ev) {
+
+}
+
+void TestGamelet::prepareCollision(std::shared_ptr<CollisionEvent> ev) {
+
+}
+
+void TestGamelet::performCollision() {
+
 }
