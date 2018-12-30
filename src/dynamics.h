@@ -36,7 +36,7 @@ public:
  */
 class Event {
 public:
-    explicit Event(std::shared_ptr<IEventSource>& source);
+    explicit Event(std::shared_ptr<IEventSource> source);
     virtual ~Event() = default;
 
     std::shared_ptr<IEventSource> getSource();
@@ -61,7 +61,7 @@ class ICollider;
  */
 class CollisionEvent : Event {
 public:
-    CollisionEvent(std::shared_ptr<IEventSource>& source, std::shared_ptr<ICollider>& obj1, std::shared_ptr<ICollider>& obj2, const SDL_Point& vec1to2);
+    CollisionEvent(std::shared_ptr<IEventSource> source, std::shared_ptr<ICollider> obj1, std::shared_ptr<ICollider> obj2, const SDL_Point& vec1to2);
     ~CollisionEvent() override = default;
 
     std::shared_ptr<ICollider> getCollider1();
@@ -113,7 +113,7 @@ class Gamelet {
  */
 class GameEvent : Event {
 public:
-    explicit GameEvent(std::shared_ptr<IEventSource>& source);
+    explicit GameEvent(std::shared_ptr<IEventSource> source);
     ~GameEvent() override = default;
 };
 
@@ -135,7 +135,7 @@ public:
  */
 class LevelDoneEvent : Event {
 public:
-    explicit LevelDoneEvent(std::shared_ptr<IEventSource>& source);
+    explicit LevelDoneEvent(std::shared_ptr<IEventSource> source);
     ~LevelDoneEvent() override = default;
 };
 
@@ -157,7 +157,7 @@ public:
  */
 class LivesEvent : Event {
 public:
-    LivesEvent(std::shared_ptr<IEventSource>& source, int diff);
+    LivesEvent(std::shared_ptr<IEventSource> source, int diff);
     ~LivesEvent() override = default;
 
     int getDiff();
@@ -184,7 +184,7 @@ public:
  */
 class PointsEvent : GameEvent {
 public:
-    PointsEvent(std::shared_ptr<IEventSource>& source, int diff);
+    PointsEvent(std::shared_ptr<IEventSource> source, int diff);
     ~PointsEvent() override = default;
 
     int getDiff();
@@ -208,7 +208,7 @@ public:
 /**
  *
  */
-class DynamicFramework : IGameListener, ILevelDoneListener, ILivesListener, IPointsListener, IEventSource {
+class DynamicFramework : public IGameListener, public ILevelDoneListener, public ILivesListener, public IPointsListener, public IEventSource {
 public:
     std::string toString() override;
     void handleGameEvent(std::shared_ptr<GameEvent> ev) override;
@@ -218,5 +218,25 @@ public:
 
 };
 
+/**
+ *
+ */
+class MoveEvent : public Event {
+public:
+    static const auto BEGIN = 0;
+    static const auto MOVE = 1;
+    static const auto UPDATE = 2;
+    static const auto END = 3;
+
+    explicit MoveEvent(std::shared_ptr<IEventSource> source, int type, int moveDivider);
+    ~MoveEvent() override = default;
+
+    int getType();
+    int getMoveDevider();
+
+private:
+    int type;
+    int moveDevider;
+};
 
 #endif //METROIDVANIA_DYNAMICS_H
