@@ -12,6 +12,16 @@
 /**
  *
  */
+ struct Dimension {
+     int width;
+     int height;
+
+     Dimension& operator= (const SDL_Rect& rect);
+ };
+
+/**
+ *
+ */
 struct MilliPoint {
 public:
     int x;
@@ -34,6 +44,7 @@ public:
      */
     MilliPoint& operator+ (const MilliPoint& other);
     /*explicit*/ operator SDL_Point() const; // cast
+    MilliPoint& operator= (const SDL_Point& other);
 };
 
 
@@ -60,6 +71,7 @@ public:
      * operators
      */
     /*explicit*/ operator SDL_Rect() const; // cast
+    MilliRect& operator= (const Dimension& other);
 
     /*
      * methods

@@ -36,6 +36,12 @@ TEST(Geometry, Millipoint) {
 
     SDL_Point sp2 = mp8;
     ASSERT_TRUE(sp2.x == 2 && sp2.y == 4);
+
+    MilliPoint mp9{20, 30};
+    SDL_Point sp3{60, 10};
+    mp9 = sp3;
+    ASSERT_EQ(60000, mp9.x);
+    ASSERT_EQ(10000, mp9.y);
 }
 
 
@@ -86,4 +92,9 @@ TEST(Geometry, Millirect) {
     ASSERT_FALSE(mr7.isIntersectingWith(mr6));
     ASSERT_FALSE(mr7.isIntersectingWith(mr5));
     ASSERT_TRUE(MilliRect(100, 200, 50, 60).isIntersectingWith(MilliRect(120, 150, 30, 80)));
+
+    Dimension d{1, 2};
+    mr7 = d;
+    ASSERT_EQ(1000, mr7.w);
+    ASSERT_EQ(2000, mr7.h);
 }

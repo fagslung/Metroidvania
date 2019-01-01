@@ -29,6 +29,13 @@ MilliPoint::operator SDL_Point() const {
     return p;
 }
 
+MilliPoint& MilliPoint::operator=(const SDL_Point &other) {
+    x = other.x * 1000;
+    y = other.y * 1000;
+
+    return *this;
+}
+
 MilliRect::MilliRect() : x(0), y(0), w(0), h(0) {}
 
 MilliRect::MilliRect(int x, int y, int w, int h) : x(x), y(y), w(w), h(h) {}
@@ -91,4 +98,18 @@ bool MilliRect::isIntersectingWith(MilliRect other) {
             other.x + other.w > x &&
             y + h > other.y &&
             other.y + other.h > y);
+}
+
+MilliRect &MilliRect::operator=(const Dimension &other) {
+    w = other.width * 1000;
+    h = other.height * 1000;
+
+    return *this;
+}
+
+Dimension &Dimension::operator=(const SDL_Rect &rect) {
+    width = rect.w;
+    height = rect.h;
+
+    return *this;
 }
