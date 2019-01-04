@@ -101,6 +101,8 @@ TEST(Dynamics, Level) {
     auto border = std::make_shared<Border>();
     pL->addGamelet(border);
     ASSERT_TRUE(border->getLevelAddedTo() == pL);
+
+    // TODO   Level->getIntersections().erase
 }
 
 

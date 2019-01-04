@@ -93,7 +93,7 @@ MilliRect &MilliRect::increaseDimension(const MilliPoint &dim) {
     return *this;
 }
 
-bool MilliRect::isIntersectingWith(MilliRect other) {
+bool MilliRect::isIntersectingWith(MilliRect other) const {
     return (x + w > other.x &&
             other.x + other.w > x &&
             y + h > other.y &&

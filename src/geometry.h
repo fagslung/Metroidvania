@@ -80,7 +80,7 @@ public:
     MilliRect& setDimension(const MilliPoint& dim);
     MilliRect& move(const MilliPoint& pos);
     MilliRect& increaseDimension(const MilliPoint& dim);
-    bool isIntersectingWith(MilliRect other);
+    bool isIntersectingWith(MilliRect other) const;
 };
 
 #endif //METROIDVANIA_GEOMETRY_H

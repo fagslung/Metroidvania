@@ -11,6 +11,21 @@
 #include "gameutil.h"
 #include <vector>
 #include "geometry.h"
+#include "intersect.h"
+
+
+
+/**
+ * Interface
+ */
+class IEventListener {
+public:
+    virtual ~IEventListener() = default;
+};
+
+
+template <class S>
+void removeListenerFrom(std::vector<std::shared_ptr<S>> eventSources, std::shared_ptr<IEventListener> listener);
 
 
 /**
@@ -20,16 +35,8 @@ class IEventSource {
 public:
     virtual ~IEventSource() = default;
 
-    virtual std::string toString() = 0;
-};
-
-
-/**
- * Interface
- */
-class IEventListener {
-public:
-    virtual ~IEventListener() = default;
+    virtual std::string toString() const = 0;
+    virtual void removeListener(std::shared_ptr<IEventListener> listener) = 0;
 };
 
 
@@ -42,7 +49,7 @@ public:
     virtual ~Event() = default;
 
     std::shared_ptr<IEventSource> getSource();
-    virtual std::string toString();
+    virtual std::string toString() const;
 
 private:
     std::shared_ptr<IEventSource> source;
@@ -66,10 +73,10 @@ public:
     CollisionEvent(std::shared_ptr<IEventSource> source, std::shared_ptr<ICollider> obj1, std::shared_ptr<ICollider> obj2, const SDL_Point& vec1to2);
     ~CollisionEvent() override = default;
 
-    std::shared_ptr<ICollider> getCollider1();
-    std::shared_ptr<ICollider> getCollider2();
-    std::shared_ptr<ICollider> getOtherCollider(std::shared_ptr<ICollider> curCollider);
-    SDL_Point& getCollisionDirection(std::shared_ptr<ICollider> curCollider);
+    std::shared_ptr<ICollider> getCollider1() const;
+    std::shared_ptr<ICollider> getCollider2() const;
+    std::shared_ptr<ICollider> getOtherCollider(std::shared_ptr<ICollider> curCollider) const;
+    const SDL_Point& getCollisionDirection(std::shared_ptr<ICollider> curCollider) const;
 
 private:
     std::shared_ptr<ICollider> obj1;
@@ -82,11 +89,11 @@ private:
 /**
  *
  */
-class ICollider : public IEventListener {
+class ICollider : public virtual IEventListener {
 public:
     ~ICollider() override = default;
 
-    virtual void prepareCollision(std::shared_ptr<CollisionEvent> ev) = 0;
+    virtual void prepareCollision(const CollisionEvent& ev) = 0;
     virtual void performCollision() = 0;
 };
 
@@ -94,11 +101,11 @@ public:
 /**
  *
  */
-class ICollisionListener : public IEventListener {
+class ICollisionListener : public virtual IEventListener {
 public:
     ~ICollisionListener() override = default;
 
-    virtual void collisionOccured(std::shared_ptr<CollisionEvent> ev) = 0;
+    virtual void collisionOccured(const CollisionEvent& ev) = 0;
 };
 
 
@@ -115,11 +122,11 @@ public:
 /**
  *
  */
-class IGameListener : public IEventListener {
+class IGameListener : public virtual IEventListener {
 public:
     ~IGameListener() override = default;
 
-    virtual void handleGameEvent(std::shared_ptr<GameEvent> ev) = 0;
+    virtual void handleGameEvent(const GameEvent& ev) = 0;
 
 };
 
@@ -137,11 +144,11 @@ public:
 /**
  *
  */
-class ILevelDoneListener : public IEventListener {
+class ILevelDoneListener : public virtual IEventListener {
 public:
     ~ILevelDoneListener() override = default;
 
-    virtual void handleLevelDoneEvent(std::shared_ptr<LevelDoneEvent> ev) = 0;
+    virtual void handleLevelDoneEvent(const LevelDoneEvent& ev) = 0;
 
 };
 
@@ -154,7 +161,7 @@ public:
     LivesEvent(std::shared_ptr<IEventSource> source, int diff);
     ~LivesEvent() override = default;
 
-    int getDiff();
+    int getDiff() const;
 
 private:
     int diff;
@@ -164,11 +171,11 @@ private:
 /**
  *
  */
-class ILivesListener : public IEventListener {
+class ILivesListener : public virtual IEventListener {
 public:
     ~ILivesListener() override = default;
 
-    virtual void handleLivesEvent(std::shared_ptr<LivesEvent> ev) = 0;
+    virtual void handleLivesEvent(const LivesEvent& ev) = 0;
 
 };
 
@@ -181,7 +188,7 @@ public:
     PointsEvent(std::shared_ptr<IEventSource> source, int diff);
     ~PointsEvent() override = default;
 
-    int getDiff();
+    int getDiff() const;
 
 private:
     int diff;
@@ -191,11 +198,11 @@ private:
 /**
  *
  */
-class IPointsListener : public IEventListener {
+class IPointsListener : public virtual IEventListener {
 public:
     ~IPointsListener() override = default;
 
-    virtual void handlePointsEvent(std::shared_ptr<PointsEvent> ev) = 0;
+    virtual void handlePointsEvent(const PointsEvent& ev) = 0;
 
 };
 
@@ -207,18 +214,17 @@ class TickEvent : public Event {
 public:
     TickEvent(std::shared_ptr<IEventSource> source);
     ~TickEvent() override = default;
-
 };
 
 
 /**
  *
  */
-class ITickListener : public IEventListener {
+class ITickListener : public virtual IEventListener {
 public:
     ~ITickListener() override = default;
 
-    virtual void tickOccured(std::shared_ptr<TickEvent> ev) = 0;
+    virtual void tickOccured(const TickEvent& ev) = 0;
 
 };
 
@@ -227,50 +233,6 @@ public:
  * forward declaration
  */
 class Gamelet;
-
-
-/**
- *
- */
-class Level : public std::enable_shared_from_this<Level>, public IGameListener, public ILevelDoneListener, public ILivesListener, public IPointsListener {
-public:
-    void handleGameEvent(std::shared_ptr<GameEvent> ev) override;
-    void handleLevelDoneEvent(std::shared_ptr<LevelDoneEvent> ev) override;
-    void handleLivesEvent(std::shared_ptr<LivesEvent> ev) override;
-    void handlePointsEvent(std::shared_ptr<PointsEvent> ev) override;
-
-    // manage game listeners
-    void removeGameListener(std::shared_ptr<IGameListener> l);
-    void addGameListener(std::shared_ptr<IGameListener> l);
-    const std::vector<std::shared_ptr<IGameListener>>& getGameListeners() const;
-    // manage level done listeners
-    void removeLevelDoneListener(std::shared_ptr<ILevelDoneListener> l);
-    void addLevelDoneListener(std::shared_ptr<ILevelDoneListener> l);
-    const std::vector<std::shared_ptr<ILevelDoneListener>>& getLevelDoneListener() const;
-    // manage lives listeners
-    void removeLivesListener(std::shared_ptr<ILivesListener> l);
-    void addLivesListener(std::shared_ptr<ILivesListener> l);
-    const std::vector<std::shared_ptr<ILivesListener>>& getLivesListener() const;
-    // manage points listeners
-    void removePointsListener(std::shared_ptr<IPointsListener> l);
-    void addPointsListener(std::shared_ptr<IPointsListener> l);
-    const std::vector<std::shared_ptr<IPointsListener>>& getPointsListener() const;
-
-    void setSize(const Dimension& size);
-    const Dimension& getSize() const;
-    void addGamelet(std::shared_ptr<Gamelet> gl);
-    void addTickListener(std::shared_ptr<ITickListener> l);
-
-private:
-    std::vector<std::shared_ptr<IGameListener>> gameListeners;
-    std::vector<std::shared_ptr<ILevelDoneListener>> levelDoneListeners;
-    std::vector<std::shared_ptr<ILivesListener>> livesListeners;
-    std::vector<std::shared_ptr<IPointsListener>> pointsListeners;
-    std::vector<std::shared_ptr<ITickListener>> tickListeners;
-
-    Dimension size;
-    std::vector<std::shared_ptr<Gamelet>> gamelets;
-};
 
 
 /**
@@ -286,8 +248,8 @@ public:
     explicit MoveEvent(std::shared_ptr<IEventSource> source, int type, int moveDivider);
     ~MoveEvent() override = default;
 
-    int getType();
-    int getMoveDevider();
+    int getType() const;
+    int getMoveDevider() const;
 
 private:
     int type;
@@ -296,108 +258,20 @@ private:
 
 
 /**
- * TODO!!!
- */
-class DynamicFramework : public std::enable_shared_from_this<DynamicFramework>, public IGameListener, public ILevelDoneListener, public ILivesListener, public IPointsListener, public IEventSource {
-public:
-    static const auto NUMBER_OF_MOVE_STEPS = 10;
-
-    std::string toString() override;
-    void handleGameEvent(std::shared_ptr<GameEvent> ev) override;
-    void handleLevelDoneEvent(std::shared_ptr<LevelDoneEvent> ev) override;
-    void handleLivesEvent(std::shared_ptr<LivesEvent> ev) override;
-    void handlePointsEvent(std::shared_ptr<PointsEvent> ev) override;
-
-    void setLevel(std::shared_ptr<Level> level);
-
-private:
-    std::shared_ptr<Level> level = nullptr;
-    bool levelDone = false;
-
-//    MoveEvent meBegin = MoveEvent(shared_from_this(), MoveEvent::BEGIN, NUMBER_OF_MOVE_STEPS);
-//    MoveEvent meMove = MoveEvent(shared_from_this(), MoveEvent::MOVE, NUMBER_OF_MOVE_STEPS);
-//    MoveEvent meUpdate = MoveEvent(shared_from_this(), MoveEvent::UPDATE, NUMBER_OF_MOVE_STEPS);
-//    MoveEvent meEnd = MoveEvent(shared_from_this(), MoveEvent::END, NUMBER_OF_MOVE_STEPS);
-};
-
-
-/**
  *
  */
-class IMoveListener : public IEventListener {
+class IMoveListener : public virtual IEventListener {
 public:
     ~IMoveListener() override = default;
 
-    virtual void handleMoveEvent(std::shared_ptr<MoveEvent> ev) = 0;
+    virtual void handleMoveEvent(const MoveEvent& ev) = 0;
 };
 
 
 /**
- *
+ * forward declaration
  */
-class Gamelet : public std::enable_shared_from_this<Gamelet>, public ICollider, public IGameListener, public ITickListener {
-public:
-    ~Gamelet() override = default;
-
-    void prepareCollision(std::shared_ptr<CollisionEvent> ev) override;
-    void performCollision() override;
-    void tickOccured(std::shared_ptr<TickEvent> ev) override;
-    void handleGameEvent(std::shared_ptr<GameEvent> ev) override;
-
-    virtual std::string getName() = 0;
-    void remove();
-    void addToLevel(std::shared_ptr<Level> level);
-    void addGameListener(std::shared_ptr<IGameListener> l);
-    std::shared_ptr<Level> getLevelAddedTo();
-
-    void setVisiblePos(const SDL_Point& visiblePos);
-    void setCalculatedPos(const SDL_Point& calculatedPos);
-    void setSize(const Dimension& size);
-
-private:
-    std::shared_ptr<Level> levelAddedTo = nullptr;
-    std::vector<std::shared_ptr<IGameListener>> gameListeners;
-
-    Dimension size;
-    SDL_Point visiblePos;
-    SDL_Point calculatedPos;
-    SDL_Rect calculatedBounds;
-    MilliPoint calculatedMilliPos;
-    MilliRect calculatedMilliBounds;
-};
-
-
-/**
- *
- */
-class TestGamelet : public Gamelet {
-public:
-    TestGamelet() = default;
-
-    std::string getName() override;
-    void prepareCollision(std::shared_ptr<CollisionEvent> ev) override;
-    void performCollision() override;
-};
-
-
-/**
- *
- */
-class Border : public Gamelet {
-public:
-    Border() = default;
-
-    std::string getName() override;
-    void prepareCollision(std::shared_ptr<CollisionEvent> ev) override;
-    void performCollision() override;
-
-    bool getOpen();
-    void setOpen(bool open);
-
-private:
-    bool open;
-    std::shared_ptr<Gamelet> collidingGamelet = nullptr;
-};
+class Level;
 
 
 /**
@@ -429,6 +303,271 @@ private:
     size_t index = 0;
 };
 
+
+/**
+ * forward declaration
+ */
+class Intersection;
+
+
+/**
+ *
+ */
+class GameletIntersections {
+public:
+    GameletIntersections(std::shared_ptr<Gamelet> gl);
+
+    bool isIntersected();
+
+    std::shared_ptr<Gamelet> owner;
+    std::vector<std::shared_ptr<Intersection>> intersections;
+};
+
+
+/**
+ *
+ */
+class Intersection : public std::enable_shared_from_this<Intersection> {
+public:
+    Intersection(std::shared_ptr<Gamelet> gl1, std::shared_ptr<Gamelet> gl2, std::shared_ptr<Level> level);
+
+    bool check();
+    void add();
+    void free();
+    static bool intersect(std::shared_ptr<Gamelet> gl1, std::shared_ptr<Gamelet> gl2);
+    bool intersect();
+    static std::shared_ptr<Intersection> getIntersection(std::shared_ptr<Gamelet> gl1, std::shared_ptr<Gamelet> gl2);
+    void setIntersecting(bool is);
+    bool getIntersecting();
+    std::shared_ptr<Gamelet> getGamelet1();
+    std::shared_ptr<Gamelet> getGamelet2();
+    std::shared_ptr<Gamelet> getOtherGamelet(std::shared_ptr<Gamelet> gl);
+
+private:
+    std::shared_ptr<Gamelet> gl1;
+    std::shared_ptr<Gamelet> gl2;
+    std::shared_ptr<GameletIntersections> gi1;
+    std::shared_ptr<GameletIntersections> gi2;
+    std::shared_ptr<Level> associatedLevel;
+    bool intersecting;
+};
+
+
+class IntersectionChangeEvent : public Event {
+public:
+    explicit IntersectionChangeEvent(std::shared_ptr<IEventSource> source, std::shared_ptr<Intersection> is);
+    ~IntersectionChangeEvent() override = default;
+
+private:
+    std::shared_ptr<Intersection> is;
+};
+
+
+/**
+ *
+ */
+class IIntersectionChangeListener : public virtual IEventListener {
+public:
+    ~IIntersectionChangeListener() override = default;
+
+    virtual void intersectionChangeOccured(const IntersectionChangeEvent& ev) = 0;
+
+};
+
+
+/**
+ *
+ */
+class Level : public std::enable_shared_from_this<Level>, public IGameListener, public ILevelDoneListener, public ILivesListener, public IPointsListener, public IEventSource {
+public:
+    std::string toString() const override;
+    void handleGameEvent(const GameEvent& ev) override;
+    void handleLevelDoneEvent(const LevelDoneEvent& ev) override;
+    void handleLivesEvent(const LivesEvent& ev) override;
+    void handlePointsEvent(const PointsEvent& ev) override;
+
+    // manage game listeners
+    void removeListener(std::shared_ptr<IEventListener> listener) override;
+
+    void removeGameListener(std::shared_ptr<IGameListener> l);
+    void addGameListener(std::shared_ptr<IGameListener> l);
+    const std::vector<std::shared_ptr<IGameListener>>& getGameListeners() const;
+    // manage level done listeners
+    void removeLevelDoneListener(std::shared_ptr<ILevelDoneListener> l);
+    void addLevelDoneListener(std::shared_ptr<ILevelDoneListener> l);
+    const std::vector<std::shared_ptr<ILevelDoneListener>>& getLevelDoneListener() const;
+    // manage lives listeners
+    void removeLivesListener(std::shared_ptr<ILivesListener> l);
+    void addLivesListener(std::shared_ptr<ILivesListener> l);
+    const std::vector<std::shared_ptr<ILivesListener>>& getLivesListener() const;
+    // manage points listeners
+    void removePointsListener(std::shared_ptr<IPointsListener> l);
+    void addPointsListener(std::shared_ptr<IPointsListener> l);
+    const std::vector<std::shared_ptr<IPointsListener>>& getPointsListener() const;
+    // manage tick listeners
+    void addTickListener(std::shared_ptr<ITickListener> l);
+    void removeTickListener(std::shared_ptr<ITickListener> l);
+    // manage move listeners
+    void addMoveListener(std::shared_ptr<IMoveListener> l);
+    void removeMoveListener(std::shared_ptr<IMoveListener> l);
+    // manage intersection change listeners
+    void addIntersectionChangeListener(std::shared_ptr<IIntersectionChangeListener> l);
+    void removeIntersectionChangeListener(std::shared_ptr<IIntersectionChangeListener> l);
+
+    void setSize(const Dimension& size);
+    const Dimension& getSize() const;
+    void addGamelet(std::shared_ptr<Gamelet> gl);
+
+    void fireMoveEvent(const MoveEvent& me);
+    void fireTickEvent();
+    void removeGamelet(std::shared_ptr<Gamelet> gl);
+
+    bool isDone(); // level successfully finished?
+    void fireLevelDoneEvent(const LevelDoneEvent& e);
+
+    void fireCollisionEvent(const CollisionEvent& ce);
+
+    std::shared_ptr<GameletIterator> newNearGameletIterator(std::shared_ptr<Gamelet> gl);
+
+    std::vector<std::shared_ptr<Intersection>>& getIntersections();
+    void fireIntersectionChangeEvent(std::shared_ptr<Intersection> is);
+
+private:
+    // listener
+    std::vector<std::shared_ptr<IGameListener>> gameListeners;
+    std::vector<std::shared_ptr<ILevelDoneListener>> levelDoneListeners;
+    std::vector<std::shared_ptr<ILivesListener>> livesListeners;
+    std::vector<std::shared_ptr<IPointsListener>> pointsListeners;
+    std::vector<std::shared_ptr<ITickListener>> tickListeners;
+    std::vector<std::shared_ptr<IMoveListener>> moveListeners;
+    std::vector<std::shared_ptr<ICollisionListener>> collisionListeners;
+    std::vector<std::shared_ptr<IIntersectionChangeListener>> intersectionChangeListeners;
+
+    Dimension size;
+
+    std::vector<std::shared_ptr<Gamelet>> gamelets;
+    std::vector<std::shared_ptr<Gamelet>> gameletsToRemove;
+    std::vector<std::shared_ptr<Gamelet>> extraDGamelets;
+    std::vector<std::shared_ptr<Gamelet>> invisibleGamelets;
+    std::vector<std::shared_ptr<Intersection>> intersections;
+};
+
+
+/**
+ * TODO!!!
+ */
+class DynamicFramework : public std::enable_shared_from_this<DynamicFramework>, public IGameListener, public ILevelDoneListener, public ILivesListener, public IPointsListener, public IEventSource {
+public:
+    static const auto NUMBER_OF_MOVE_STEPS = 10;
+
+    std::string toString() const override;
+    void removeListener(std::shared_ptr<IEventListener> listener) override;
+    void handleGameEvent(const GameEvent& ev) override;
+    void handleLevelDoneEvent(const LevelDoneEvent& ev) override;
+    void handleLivesEvent(const LivesEvent& ev) override;
+    void handlePointsEvent(const PointsEvent& ev) override;
+
+    void setLevel(std::shared_ptr<Level> level);
+    void tick(); // principal function: has to be called once per tick
+    void fireCollisionEvent(const CollisionEvent& ce);
+    /*
+     * => null:  keine Kollision
+     * => sonst: Kollision, die nach dem Ausfuehren des moves auftreten wird und move wird entsprechend verkuerzt
+     */
+    std::shared_ptr<CollisionEvent> wantMove(std::shared_ptr<Gamelet> gl, MilliPoint& move /* out parameter! */);
+
+private:
+    std::shared_ptr<Level> level = nullptr;
+    bool levelDone = false;
+};
+
+
+/**
+ *
+ */
+class Gamelet : public std::enable_shared_from_this<Gamelet>, public ICollider, public IGameListener, public ITickListener, public IEventSource {
+public:
+    ~Gamelet() override = default;
+
+    void removeListener(std::shared_ptr<IEventListener> listener) override;
+    void prepareCollision(const CollisionEvent& ev) override;
+    void performCollision() override;
+    void tickOccured(const TickEvent& ev) override;
+    void handleGameEvent(const GameEvent& ev) override;
+
+    virtual std::string getName() const = 0;
+    void remove();
+    void addToLevel(std::shared_ptr<Level> level);
+    void addGameListener(std::shared_ptr<IGameListener> l);
+    void removeGameListener(std::shared_ptr<IGameListener> l);
+    std::shared_ptr<Level> getLevelAddedTo();
+    void removeFromLevel(std::shared_ptr<Level> level);
+
+    void setVisiblePos(const SDL_Point& visiblePos);
+    void setCalculatedPos(const SDL_Point& calculatedPos);
+    void setSize(const Dimension& size);
+    bool getDirty();
+    virtual bool isForLevelDone(); // gamelet to be destroyed for succeeding level?
+    const MilliRect& getCalculatedMilliBounds() const;
+    std::shared_ptr<GameletIntersections> getIntersections();
+    void prepareIntersectionChange(std::shared_ptr<Gamelet> other, bool newIs);
+    void performIntersectionChange();
+
+private:
+    // listener
+    std::vector<std::shared_ptr<IGameListener>> gameListeners;
+
+    std::shared_ptr<Level> levelAddedTo = nullptr;
+
+    std::shared_ptr<GameletIntersections> intersections = nullptr;
+
+    Dimension size;
+    SDL_Point visiblePos;
+    SDL_Point calculatedPos;
+    SDL_Rect calculatedBounds;
+    MilliPoint calculatedMilliPos;
+    MilliRect calculatedMilliBounds;
+    bool dirty;
+};
+
+
+/**
+ *
+ */
+class TestGamelet : public Gamelet {
+public:
+    TestGamelet() = default;
+
+    std::string getName() const override;
+    std::string toString() const override;
+    void removeListener(std::shared_ptr<IEventListener> listener) override;
+    void prepareCollision(const CollisionEvent& ev) override;
+    void performCollision() override;
+};
+
+
+/**
+ *
+ */
+class Border : public Gamelet {
+public:
+    Border() = default;
+
+    std::string getName() const override;
+    std::string toString() const override;
+    void removeListener(std::shared_ptr<IEventListener> listener) override;
+    void prepareCollision(const CollisionEvent& ev) override;
+    void performCollision() override;
+
+    bool getOpen();
+    void setOpen(bool open);
+
+private:
+    // listener
+
+    bool open;
+    std::shared_ptr<Gamelet> collidingGamelet = nullptr;
+};
 
 
 #endif //METROIDVANIA_DYNAMICS_H
