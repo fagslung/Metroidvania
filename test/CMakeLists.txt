@@ -11,6 +11,7 @@ include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
 add_executable(MetroidvaniaTest
         dynamicsTest.cpp
-        geometryTest.cpp)
+        geometryTest.cpp
+        baseTest.cpp)
 
 target_link_libraries(MetroidvaniaTest gtest gtest_main ${PROJECT_LIBRARY})

@@ -27,7 +27,7 @@ void removeListenerFrom(std::vector<std::shared_ptr<S>> eventSources, std::share
 }
 
 
-std::shared_ptr<IEventSource> Event::getSource() {
+std::shared_ptr<IEventSource> Event::getSource() const {
     return source;
 }
 
@@ -277,12 +277,12 @@ std::shared_ptr<CollisionEvent> DynamicFramework::wantMove(std::shared_ptr<Gamel
     return nullptr; // Provisorium
 }
 
-MoveEvent::MoveEvent(std::shared_ptr<IEventSource> source, int type, int moveDivider) : Event(std::move(source)), type(type), moveDevider(moveDivider) {
+MoveEvent::MoveEvent(std::shared_ptr<IEventSource> source, int type, int moveDivider) : Event(std::move(source)), type(type), moveDivider(moveDivider) {
 
 }
 
-int MoveEvent::getMoveDevider() const {
-    return moveDevider;
+int MoveEvent::getMoveDivider() const {
+    return moveDivider;
 }
 
 int MoveEvent::getType() const {
@@ -485,8 +485,9 @@ void Gamelet::addToLevel(std::shared_ptr<Level> level) {
 }
 
 void Gamelet::tickOccured(const TickEvent& ev) {
-    // TODO
-    // if (intersections.isIntersected()) drawCnt = 2;
+    if (intersections->isIntersected()) {
+        drawCnt = 2;
+    }
 }
 
 void Gamelet::addGameListener(std::shared_ptr<IGameListener> l) {
@@ -567,6 +568,18 @@ void Gamelet::prepareIntersectionChange(std::shared_ptr<Gamelet> other, bool new
 
 void Gamelet::performIntersectionChange() {
 
+}
+
+const MilliPoint &Gamelet::getCalculatedMilliPos() const {
+    return calculatedMilliPos;
+}
+
+void Gamelet::setCalculatedMilliPos(const MilliPoint &calculatedMilliPos) {
+    this->calculatedMilliPos = calculatedMilliPos;
+    calculatedMilliBounds.setPosition(calculatedMilliPos);
+    this->calculatedPos = this->calculatedMilliPos;
+    calculatedBounds.x = calculatedPos.x;
+    calculatedBounds.y = calculatedPos.y;
 }
 
 TickEvent::TickEvent(std::shared_ptr<IEventSource> source) : Event(std::move(source)) {

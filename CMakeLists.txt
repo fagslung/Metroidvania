@@ -26,7 +26,6 @@ include_directories(${SDL2_INCLUDE_DIR}
         ${SDL2_MIXER_INCLUDE_DIR})
 
 set(SOURCE_FILES
-        src/intersect.cpp src/intersect.h
         src/dynamics.cpp src/dynamics.h
         src/gameutil.cpp src/gameutil.h
         src/geometry.cpp src/geometry.h

@@ -6,6 +6,8 @@
 #define METROIDVANIA_GEOMETRY_H
 
 #include <SDL.h>
+#include <vector>
+#include <memory>
 
 
 
@@ -35,9 +37,6 @@ public:
     MilliPoint(const MilliPoint& other) = default;
     MilliPoint(MilliPoint&& other) noexcept;
     /*explicit*/ MilliPoint(const SDL_Point& other);
-    void xy() {
-
-    }
 
     /*
      * operators
@@ -45,6 +44,7 @@ public:
     MilliPoint& operator+ (const MilliPoint& other);
     /*explicit*/ operator SDL_Point() const; // cast
     MilliPoint& operator= (const SDL_Point& other);
+    MilliPoint& operator= (const MilliPoint& other) = default;
 };
 
 
@@ -81,6 +81,20 @@ public:
     MilliRect& move(const MilliPoint& pos);
     MilliRect& increaseDimension(const MilliPoint& dim);
     bool isIntersectingWith(MilliRect other) const;
+};
+
+
+/**
+ *
+ */
+class SizedImage {
+public:
+    SizedImage() = default;
+
+private:
+    Dimension size;
+    std::shared_ptr<SDL_Texture> image;
+    std::vector<SDL_Rect> sprites;
 };
 
 #endif //METROIDVANIA_GEOMETRY_H

@@ -26,7 +26,7 @@ TEST(Dynamics, MoveEvent) {
     auto me = std::make_shared<MoveEvent>(df, MoveEvent::BEGIN, 10);
     //MoveEvent me = MoveEvent(df, MoveEvent::BEGIN, 10);
     std::cout << me->toString() << std::endl;
-    ASSERT_TRUE(me->getMoveDevider() == 10 && me->getType() == MoveEvent::BEGIN);
+    ASSERT_TRUE(me->getMoveDivider() == 10 && me->getType() == MoveEvent::BEGIN);
 }
 
 TEST(Dynamics, SimpleGameletIterator) {

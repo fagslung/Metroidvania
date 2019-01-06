@@ -11,7 +11,6 @@
 #include "gameutil.h"
 #include <vector>
 #include "geometry.h"
-#include "intersect.h"
 
 
 
@@ -48,7 +47,7 @@ public:
     explicit Event(std::shared_ptr<IEventSource> source);
     virtual ~Event() = default;
 
-    std::shared_ptr<IEventSource> getSource();
+    std::shared_ptr<IEventSource> getSource() const;
     virtual std::string toString() const;
 
 private:
@@ -249,11 +248,11 @@ public:
     ~MoveEvent() override = default;
 
     int getType() const;
-    int getMoveDevider() const;
+    int getMoveDivider() const;
 
 private:
     int type;
-    int moveDevider;
+    int moveDivider;
 };
 
 
@@ -487,6 +486,13 @@ private:
  */
 class Gamelet : public std::enable_shared_from_this<Gamelet>, public ICollider, public IGameListener, public ITickListener, public IEventSource {
 public:
+    static const auto ANIM_LOOPUP = 0;
+    static const auto ANIM_LOOPDOWN = 1;
+    static const auto ANIM_PINGPONG = 2;
+    static const auto ANIM_PONGPING = 3;
+    static const auto ANIM_FLAG_STARTRANDOMLY = 0x4000;
+    static const auto ANIM_FLAG_COUNTUP = 0x2000;
+
     ~Gamelet() override = default;
 
     void removeListener(std::shared_ptr<IEventListener> listener) override;
@@ -497,11 +503,11 @@ public:
 
     virtual std::string getName() const = 0;
     void remove();
-    void addToLevel(std::shared_ptr<Level> level);
+    virtual void addToLevel(std::shared_ptr<Level> level);
     void addGameListener(std::shared_ptr<IGameListener> l);
     void removeGameListener(std::shared_ptr<IGameListener> l);
     std::shared_ptr<Level> getLevelAddedTo();
-    void removeFromLevel(std::shared_ptr<Level> level);
+    virtual void removeFromLevel(std::shared_ptr<Level> level);
 
     void setVisiblePos(const SDL_Point& visiblePos);
     void setCalculatedPos(const SDL_Point& calculatedPos);
@@ -509,6 +515,8 @@ public:
     bool getDirty();
     virtual bool isForLevelDone(); // gamelet to be destroyed for succeeding level?
     const MilliRect& getCalculatedMilliBounds() const;
+    const MilliPoint& getCalculatedMilliPos() const;
+    void setCalculatedMilliPos(const MilliPoint& calculatedMilliPos);
     std::shared_ptr<GameletIntersections> getIntersections();
     void prepareIntersectionChange(std::shared_ptr<Gamelet> other, bool newIs);
     void performIntersectionChange();
@@ -521,6 +529,7 @@ private:
 
     std::shared_ptr<GameletIntersections> intersections = nullptr;
 
+    SizedImage sizedImage;
     Dimension size;
     SDL_Point visiblePos;
     SDL_Point calculatedPos;
@@ -528,6 +537,7 @@ private:
     MilliPoint calculatedMilliPos;
     MilliRect calculatedMilliBounds;
     bool dirty;
+    int drawCnt;
 };
 
 
