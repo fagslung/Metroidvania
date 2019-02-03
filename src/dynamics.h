@@ -453,7 +453,7 @@ private:
 
 
 /**
- * TODO!!!
+ *
  */
 class DynamicFramework : public std::enable_shared_from_this<DynamicFramework>, public IGameListener, public ILevelDoneListener, public ILivesListener, public IPointsListener, public IEventSource {
 public:
@@ -493,6 +493,7 @@ public:
     static const auto ANIM_FLAG_STARTRANDOMLY = 0x4000;
     static const auto ANIM_FLAG_COUNTUP = 0x2000;
 
+    Gamelet();
     ~Gamelet() override = default;
 
     void removeListener(std::shared_ptr<IEventListener> listener) override;
@@ -513,6 +514,7 @@ public:
     void setCalculatedPos(const SDL_Point& calculatedPos);
     void setSize(const Dimension& size);
     bool getDirty();
+    void setDirty(bool dirty);
     virtual bool isForLevelDone(); // gamelet to be destroyed for succeeding level?
     const MilliRect& getCalculatedMilliBounds() const;
     const MilliPoint& getCalculatedMilliPos() const;
@@ -520,22 +522,37 @@ public:
     std::shared_ptr<GameletIntersections> getIntersections();
     void prepareIntersectionChange(std::shared_ptr<Gamelet> other, bool newIs);
     void performIntersectionChange();
+    void setAnimIndex(int animIndex);
 
 private:
     // listener
     std::vector<std::shared_ptr<IGameListener>> gameListeners;
 
     std::shared_ptr<Level> levelAddedTo = nullptr;
-
     std::shared_ptr<GameletIntersections> intersections = nullptr;
 
     SizedImage sizedImage;
+    std::vector<SDL_Rect> sprites;
+    int animIndex;
+    int animBaseIndex;
+    int animLen;
+    int animCount;
+    int animOffset;
+    short animType;
+
     Dimension size;
+    Dimension visibleSize;
     SDL_Point visiblePos;
     SDL_Point calculatedPos;
-    SDL_Rect calculatedBounds;
     MilliPoint calculatedMilliPos;
+    SDL_Rect calculatedBounds;
     MilliRect calculatedMilliBounds;
+
+    SDL_Point calculatedDPos;
+    SDL_Texture* dImage;
+    Dimension dSize;
+    bool dDirty;
+
     bool dirty;
     int drawCnt;
 };

@@ -582,6 +582,38 @@ void Gamelet::setCalculatedMilliPos(const MilliPoint &calculatedMilliPos) {
     calculatedBounds.y = calculatedPos.y;
 }
 
+Gamelet::Gamelet() {
+//    setCalculatedPos(visiblePos);
+//    String[] paths = getImagePaths();
+//    if (paths == null || paths.length == 0) {
+//        sizedImageAnimations = new SizedImage[1];
+//        sizedImageAnimations[0] =
+//                new SizedImage(getStandardImagePath(), getStandardImagePath());
+//    } else {
+//        sizedImageAnimations = new SizedImage[paths.length];
+//        for (int i=0; i<paths.length; i++)
+//            sizedImageAnimations[i] = new SizedImage(paths[i], getStandardImagePath());
+//    }
+//    setDirty(true);
+//    drawCnt = 0;
+//
+//    setAnimIndex(0);
+//    setSize(getImageSize());
+}
+
+void Gamelet::setDirty(bool dirty) {
+    this->dirty = dirty;
+}
+
+void Gamelet::setAnimIndex(int animIndex) {
+//    this->animIndex = animIndex;
+//    if (animIndex >= 0 && animIndex < sprites.size()) {
+//        setSizedImage(sprites[animIndex]);
+//    } else {
+//        setSizedImage(null);
+//    }
+}
+
 TickEvent::TickEvent(std::shared_ptr<IEventSource> source) : Event(std::move(source)) {
 
 }
