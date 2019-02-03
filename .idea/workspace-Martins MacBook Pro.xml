@@ -1,0 +1,709 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="Metroidvania" targetName="gtest" />
+      <config projectName="Metroidvania" targetName="gmock_main" />
+      <config projectName="Metroidvania" targetName="MetroidvaniaCore" />
+      <config projectName="Metroidvania" targetName="MetroidvaniaTest" />
+      <config projectName="Metroidvania" targetName="gmock" />
+      <config projectName="Metroidvania" targetName="gtest_main" />
+      <config projectName="Metroidvania" targetName="Metroidvania" />
+    </generated>
+  </component>
+  <component name="CMakeSettings" AUTO_RELOAD="true">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1f353826-e77c-4a54-b1cf-3a4996cc0a68" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Metroidvania.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Metroidvania.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/base.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/base.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/base.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/base.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dynamics.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dynamics.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dynamics.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dynamics.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/game.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/game.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameutil.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameutil.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameutil.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameutil.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometry.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometry.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometry.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometry.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/intersect.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/intersect.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/intersect.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/intersect.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/dynamicsTest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/test/dynamicsTest.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/geometryTest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/test/geometryTest.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/lib/googletest-release-1.8.1/googlemock/msvc/2005/gmock.sln" beforeDir="false" afterPath="$PROJECT_DIR$/test/lib/googletest-release-1.8.1/googlemock/msvc/2005/gmock.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/lib/googletest-release-1.8.1/googlemock/msvc/2005/gmock.vcproj" beforeDir="false" afterPath="$PROJECT_DIR$/test/lib/googletest-release-1.8.1/googlemock/msvc/2005/gmock.vcproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/lib/googletest-release-1.8.1/googlemock/msvc/2005/gmock_config.vsprops" beforeDir="false" afterPath="$PROJECT_DIR$/test/lib/googletest-release-1.8.1/googlemock/msvc/2005/gmock_config.vsprops" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/lib/googletest-release-1.8.1/googlemock/msvc/2005/gmock_main.vcproj" beforeDir="false" afterPath="$PROJECT_DIR$/test/lib/googletest-release-1.8.1/googlemock/msvc/2005/gmock_main.vcproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/lib/googletest-release-1.8.1/googlemock/msvc/2005/gmock_test.vcproj" beforeDir="false" afterPath="$PROJECT_DIR$/test/lib/googletest-release-1.8.1/googlemock/msvc/2005/gmock_test.vcproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/lib/googletest-release-1.8.1/googlemock/msvc/2010/gmock.sln" beforeDir="false" afterPath="$PROJECT_DIR$/test/lib/googletest-release-1.8.1/googlemock/msvc/2010/gmock.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/lib/googletest-release-1.8.1/googlemock/msvc/2010/gmock.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/test/lib/googletest-release-1.8.1/googlemock/msvc/2010/gmock.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/lib/googletest-release-1.8.1/googlemock/msvc/2010/gmock_config.props" beforeDir="false" afterPath="$PROJECT_DIR$/test/lib/googletest-release-1.8.1/googlemock/msvc/2010/gmock_config.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/lib/googletest-release-1.8.1/googlemock/msvc/2010/gmock_main.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/test/lib/googletest-release-1.8.1/googlemock/msvc/2010/gmock_main.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/lib/googletest-release-1.8.1/googlemock/msvc/2010/gmock_test.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/test/lib/googletest-release-1.8.1/googlemock/msvc/2010/gmock_test.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/lib/googletest-release-1.8.1/googletest/codegear/gtest.cbproj" beforeDir="false" afterPath="$PROJECT_DIR$/test/lib/googletest-release-1.8.1/googletest/codegear/gtest.cbproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/lib/googletest-release-1.8.1/googletest/codegear/gtest.groupproj" beforeDir="false" afterPath="$PROJECT_DIR$/test/lib/googletest-release-1.8.1/googletest/codegear/gtest.groupproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/lib/googletest-release-1.8.1/googletest/codegear/gtest_all.cc" beforeDir="false" afterPath="$PROJECT_DIR$/test/lib/googletest-release-1.8.1/googletest/codegear/gtest_all.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/lib/googletest-release-1.8.1/googletest/codegear/gtest_link.cc" beforeDir="false" afterPath="$PROJECT_DIR$/test/lib/googletest-release-1.8.1/googletest/codegear/gtest_link.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/lib/googletest-release-1.8.1/googletest/codegear/gtest_main.cbproj" beforeDir="false" afterPath="$PROJECT_DIR$/test/lib/googletest-release-1.8.1/googletest/codegear/gtest_main.cbproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/lib/googletest-release-1.8.1/googletest/codegear/gtest_unittest.cbproj" beforeDir="false" afterPath="$PROJECT_DIR$/test/lib/googletest-release-1.8.1/googletest/codegear/gtest_unittest.cbproj" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/dynamics.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1945">
+              <caret line="207" column="9" selection-start-line="207" selection-start-column="9" selection-end-line="207" selection-end-column="9" />
+              <folding>
+                <element signature="e#115#133#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/dynamics.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="223">
+              <caret line="154" column="17" selection-start-line="154" selection-start-column="17" selection-end-line="154" selection-end-column="17" />
+              <folding>
+                <element signature="e#50#71#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/dynamicsTest.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="16" column="65" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="65" />
+              <folding>
+                <element signature="e#50#74#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CMakeLists.txt" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>std::shared_ptr</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/src/main.cpp" />
+        <option value="$PROJECT_DIR$/cmake-build-debug/findSDL2.cmake" />
+        <option value="$PROJECT_DIR$/cmake-build-debug/FindSDL2_image.cmake" />
+        <option value="$PROJECT_DIR$/cmake-build-debug/FindSDL2_ttf.cmake" />
+        <option value="$PROJECT_DIR$/test/geometryTest.cpp" />
+        <option value="$PROJECT_DIR$/src/geometry.cpp" />
+        <option value="$PROJECT_DIR$/src/gameutil.h" />
+        <option value="$PROJECT_DIR$/src/gameutil.cpp" />
+        <option value="$PROJECT_DIR$/src/geometry.h" />
+        <option value="$PROJECT_DIR$/test/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/src/base.h" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/test/dynamicsTest.cpp" />
+        <option value="$PROJECT_DIR$/src/dynamics.h" />
+        <option value="$PROJECT_DIR$/src/dynamics.cpp" />
+      </list>
+    </option>
+  </component>
+  <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
+    <option name="width" value="1300" />
+    <option name="height" value="809" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Metroidvania" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Metroidvania" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Metroidvania" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Metroidvania" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Metroidvania" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Metroidvania" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="Metroidvania" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+            <path>
+              <item name="Metroidvania" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="test" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="js.buildTools.gulp.gulp_package_dir" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="preferences.general" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Martin Eberle\OneDrive - uibk.ac.at\WS2018\Cpp Programmierung\PS\metroidvania\Metroidvania\cmake" />
+      <recent name="C:\Users\Martin Eberle\OneDrive - uibk.ac.at\WS2018\Cpp Programmierung\PS\metroidvania\Metroidvania" />
+      <recent name="C:\Users\Martin Eberle\OneDrive - uibk.ac.at\WS2018\Cpp Programmierung\PS\metroidvania\Metroidvania\src" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Google Test.All in MetroidvaniaTest">
+    <configuration name="All in Geometry" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" nameIsGenerated="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Metroidvania" TARGET_NAME="MetroidvaniaTest" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Metroidvania" RUN_TARGET_NAME="MetroidvaniaTest" TEST_CLASS="Geometry" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in MetroidvaniaTest" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" nameIsGenerated="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Metroidvania" TARGET_NAME="MetroidvaniaTest" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Metroidvania" RUN_TARGET_NAME="MetroidvaniaTest" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in dynamicsTest.cpp" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Metroidvania" TARGET_NAME="MetroidvaniaTest" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Metroidvania" RUN_TARGET_NAME="MetroidvaniaTest" TEST_PATTERN="all-tests(file://$PROJECT_DIR$/test/dynamicsTest.cpp)" TEST_MODE="PATTERN">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Dynamics.DynamicFramework" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Metroidvania" TARGET_NAME="MetroidvaniaTest" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Metroidvania" RUN_TARGET_NAME="MetroidvaniaTest" TEST_CLASS="Dynamics" TEST_METHOD="DynamicFramework" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Dynamics.MoveEvent" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Metroidvania" TARGET_NAME="MetroidvaniaTest" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Metroidvania" RUN_TARGET_NAME="MetroidvaniaTest" TEST_CLASS="Dynamics" TEST_METHOD="MoveEvent" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Dynamics.SimpleGameletIterator" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Metroidvania" TARGET_NAME="MetroidvaniaTest" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Metroidvania" RUN_TARGET_NAME="MetroidvaniaTest" TEST_CLASS="Dynamics" TEST_METHOD="SimpleGameletIterator" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Geometry.Millipoint" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Metroidvania" TARGET_NAME="MetroidvaniaTest" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Metroidvania" RUN_TARGET_NAME="MetroidvaniaTest" TEST_CLASS="Geometry" TEST_METHOD="Millipoint" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Geometry.Millirect" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Metroidvania" TARGET_NAME="MetroidvaniaTest" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Metroidvania" RUN_TARGET_NAME="MetroidvaniaTest" TEST_CLASS="Geometry" TEST_METHOD="Millirect" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Metroidvania" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Metroidvania" TARGET_NAME="Metroidvania" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Metroidvania" RUN_TARGET_NAME="Metroidvania">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MetroidvaniaCore" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Metroidvania" TARGET_NAME="MetroidvaniaCore" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MetroidvaniaTest" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Metroidvania" TARGET_NAME="MetroidvaniaTest" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Metroidvania" RUN_TARGET_NAME="MetroidvaniaTest">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="gmock" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Metroidvania" TARGET_NAME="gmock" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="gmock_main" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Metroidvania" TARGET_NAME="gmock_main" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="gtest" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Metroidvania" TARGET_NAME="gtest" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="gtest_main" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Metroidvania" TARGET_NAME="gtest_main" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.Metroidvania" />
+      <item itemvalue="Application.MetroidvaniaCore" />
+      <item itemvalue="Application.MetroidvaniaTest" />
+      <item itemvalue="Application.gmock" />
+      <item itemvalue="Application.gmock_main" />
+      <item itemvalue="Application.gtest" />
+      <item itemvalue="Application.gtest_main" />
+      <item itemvalue="Google Test.All in MetroidvaniaTest" />
+      <item itemvalue="Google Test.All in dynamicsTest.cpp" />
+      <item itemvalue="Google Test.Dynamics.DynamicFramework" />
+      <item itemvalue="Google Test.Geometry.Millipoint" />
+      <item itemvalue="Google Test.Geometry.Millirect" />
+      <item itemvalue="Google Test.All in Geometry" />
+      <item itemvalue="Google Test.Dynamics.MoveEvent" />
+      <item itemvalue="Google Test.Dynamics.SimpleGameletIterator" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Google Test.Dynamics.SimpleGameletIterator" />
+        <item itemvalue="Google Test.Dynamics.MoveEvent" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="StructureViewFactory">
+    <option name="AUTOSCROLL_FROM_SOURCE" value="true" />
+    <option name="ACTIVE_ACTIONS" value=",ALPHA_COMPARATOR" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1f353826-e77c-4a54-b1cf-3a4996cc0a68" name="Default Changelist" comment="" />
+      <created>1545422924828</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1545422924828</updated>
+      <workItem from="1545422930667" duration="1381000" />
+      <workItem from="1545476734735" duration="596000" />
+      <workItem from="1545578649746" duration="8369000" />
+      <workItem from="1545733276762" duration="7248000" />
+      <workItem from="1545921834575" duration="4975000" />
+      <workItem from="1545984589498" duration="27626000" />
+      <workItem from="1546026026988" duration="452000" />
+      <workItem from="1546074136153" duration="25597000" />
+      <workItem from="1546167022711" duration="61000" />
+      <workItem from="1546167178670" duration="6032000" />
+      <workItem from="1546243234863" duration="5732000" />
+      <workItem from="1546253019768" duration="98000" />
+    </task>
+    <task id="LOCAL-00001" summary="initial commit">
+      <created>1545996665002</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1545996665002</updated>
+    </task>
+    <task id="LOCAL-00002" summary="added geometry (millipoint and millirect)">
+      <created>1546025771466</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1546025771466</updated>
+    </task>
+    <task id="LOCAL-00003" summary="refactoring (separation declaration - definition)&#10;&lt;- fix: created core library (to be used by google test)">
+      <created>1546089038499</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1546089038499</updated>
+    </task>
+    <task id="LOCAL-00004" summary="added move event&#10;refactoring: pass event source by value (shared pointer) -&gt; polymorphism?!">
+      <created>1546158833452</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1546158833452</updated>
+    </task>
+    <task id="LOCAL-00005" summary="added gamelet iterator&#10;provisioned base and game compilation units">
+      <created>1546206594362</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1546206594362</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="All_in_MetroidvaniaTest - 2018.12.30 at 11h 26m 25s.xml">
+      <configuration name="All in MetroidvaniaTest" configurationId="CMakeGoogleTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Dynamics_SimpleGameletIterator - 2018.12.30 at 22h 11m 27s.xml">
+      <configuration name="Dynamics.SimpleGameletIterator" configurationId="CMakeGoogleTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Dynamics_SimpleGameletIterator - 2018.12.30 at 22h 13m 09s.xml">
+      <configuration name="Dynamics.SimpleGameletIterator" configurationId="CMakeGoogleTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Dynamics_SimpleGameletIterator - 2018.12.30 at 22h 13m 37s.xml">
+      <configuration name="Dynamics.SimpleGameletIterator" configurationId="CMakeGoogleTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Dynamics_SimpleGameletIterator - 2018.12.30 at 22h 14m 27s.xml">
+      <configuration name="Dynamics.SimpleGameletIterator" configurationId="CMakeGoogleTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Dynamics_SimpleGameletIterator - 2018.12.30 at 22h 34m 43s.xml">
+      <configuration name="Dynamics.SimpleGameletIterator" configurationId="CMakeGoogleTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Dynamics_SimpleGameletIterator - 2018.12.30 at 22h 40m 44s.xml">
+      <configuration name="Dynamics.SimpleGameletIterator" configurationId="CMakeGoogleTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Dynamics_SimpleGameletIterator - 2018.12.30 at 22h 41m 15s.xml">
+      <configuration name="Dynamics.SimpleGameletIterator" configurationId="CMakeGoogleTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Dynamics_SimpleGameletIterator - 2018.12.30 at 22h 42m 18s.xml">
+      <configuration name="Dynamics.SimpleGameletIterator" configurationId="CMakeGoogleTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="All_in_MetroidvaniaTest - 2018.12.30 at 22h 46m 11s.xml">
+      <configuration name="All in MetroidvaniaTest" configurationId="CMakeGoogleTestRunConfigurationType" />
+    </history-entry>
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="88167000" />
+  </component>
+  <component name="TodoView" selected-index="1">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="1300" height="809" extended-state="0" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4898374" visible="true" weight="0.39666137" />
+      <window_info id="Structure" order="1" sideWeight="0.5101626" side_tool="true" visible="true" weight="0.39666137" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info active="true" anchor="bottom" id="Messages" order="0" sideWeight="0.493347" visible="true" weight="0.31380752" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info active="true" anchor="bottom" id="Find" order="2" visible="true" weight="0.32897383" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.49539405" weight="0.32897383" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="Database Changes" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50460595" side_tool="true" weight="0.3326572" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.498002" weight="0.3279678" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49948823" weight="0.3279678" />
+      <window_info anchor="bottom" id="TODO" order="11" weight="0.3296146" />
+      <window_info anchor="bottom" id="CMake" order="12" weight="0.32894737" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" weight="0.32923076" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49401197" visible="true" weight="0.18931068" />
+      <window_info id="Structure" order="1" sideWeight="0.505988" side_tool="true" visible="true" weight="0.18931068" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="0" sideWeight="0.493347" weight="0.31488934" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.3299595" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.49539405" weight="0.32897383" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="Database Changes" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50460595" side_tool="true" weight="0.3326572" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="9" sideWeight="0.498002" visible="true" weight="0.3279678" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49948823" weight="0.3279678" />
+      <window_info anchor="bottom" id="TODO" order="11" weight="0.3296146" />
+      <window_info anchor="bottom" id="CMake" order="12" weight="0.32894737" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" weight="0.32923076" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="initial commit" />
+    <MESSAGE value="added geometry (millipoint and millirect)" />
+    <MESSAGE value="refactoring (separation declaration - definition)&#10;&lt;- fix: created core library (to be used by google test)" />
+    <MESSAGE value="added move event&#10;refactoring: pass event source by value (shared pointer) -&gt; polymorphism?!" />
+    <MESSAGE value="added gamelet iterator&#10;provisioned base and game compilation units" />
+    <option name="LAST_COMMIT_MESSAGE" value="added gamelet iterator&#10;provisioned base and game compilation units" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/test/lib/googletest-release-1.8.1/googletest/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1581" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmake-build-debug/Metroidvania.cbp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmake-build-debug/Makefile">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmake/FindSDL2.cmake">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="105" column="12" selection-start-line="105" selection-start-column="12" selection-end-line="105" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmake/FindSDL2_mixer.cmake">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="51" column="32" selection-start-line="51" selection-start-column="14" selection-end-line="51" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmake/FindSDL2_ttf.cmake">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="51" column="30" selection-start-line="51" selection-start-column="14" selection-end-line="51" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmake/FindSDL2_image.cmake">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="51" column="32" selection-start-line="51" selection-start-column="14" selection-end-line="51" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/lib/googletest-release-1.8.1/googletest/cmake/internal_utils.cmake">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-612" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/lib/googletest-release-1.8.1/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/lib/googletest-release-1.8.1/configure.ac">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/vcs.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-408" />
+      </provider>
+    </entry>
+    <entry file="file://C:/home/dev/libs/SDL2-2.0.9/include/SDL_rect.h" />
+    <entry file="file://$PROJECT_DIR$/src/intersect.cpp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/intersect.h">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="17" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/geometry.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="e#50#71#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="73" selection-start-line="15" selection-start-column="73" selection-end-line="15" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/geometry.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/geometryTest.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="83" column="16" selection-start-line="83" selection-start-column="3" selection-end-line="83" selection-end-column="16" />
+          <folding>
+            <element signature="e#50#74#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/base.cpp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game.cpp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game.h">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="33" column="8" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/base.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.16.27023/include/vector" />
+    <entry file="file://$PROJECT_DIR$/src/gameutil.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="10" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="20" />
+          <folding>
+            <element signature="e#115#133#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gameutil.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="48" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/dynamicsTest.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="65" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="65" />
+          <folding>
+            <element signature="e#50#74#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dynamics.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="154" column="17" selection-start-line="154" selection-start-column="17" selection-end-line="154" selection-end-column="17" />
+          <folding>
+            <element signature="e#50#71#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dynamics.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1945">
+          <caret line="207" column="9" selection-start-line="207" selection-start-column="9" selection-end-line="207" selection-end-column="9" />
+          <folding>
+            <element signature="e#115#133#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
